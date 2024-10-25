@@ -2,9 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const { getWeather } = require('./services/weatherService');
-const app = express();
+const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
+const app = express();
+app.use(cors());
+
+const PORT = process.env.PORT || 5000;
 
 app.get('/weather', async (req, res) => {
   const { city } = req.query;

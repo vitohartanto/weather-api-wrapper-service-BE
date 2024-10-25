@@ -1,4 +1,4 @@
-const axios = reqire('axios');
+const axios = require('axios');
 const redisClient = require('../cache/redisClient');
 
 const WEATHER_API_URL =
@@ -7,7 +7,7 @@ const API_KEY = process.env.WEATHER_API_KEY;
 
 const getWeather = async (city) => {
   try {
-    const cacheKey = `weather:${city}:${startDate}:${endDate}`;
+    const cacheKey = `weather:${city}`;
     const cachedData = await redisClient.get(cacheKey);
 
     if (cachedData) {
@@ -34,6 +34,7 @@ const getWeather = async (city) => {
       conditions: data.days[0].conditions,
       windspeed: data.days[0].windspeed,
       humidity: data.days[0].humidity,
+      icon: data.days[0].icon,
       hours: filterNext24Hours(data.days[0].hours),
     };
 
