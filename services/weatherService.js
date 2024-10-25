@@ -39,7 +39,7 @@ const getWeather = async (city) => {
     };
 
     // Simpan data di Redis dengan expiry time (misalnya, 12 jam = 43200 detik)
-    await redisClient.set(cacheKey, JSON.stringify(result), { EX: 43200 });
+    await redisClient.set(cacheKey, JSON.stringify(result), { EX: 3600 });
     return result;
   } catch (error) {
     console.error('Error fetching weather data:', error);
