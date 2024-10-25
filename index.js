@@ -9,6 +9,10 @@ app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
+app.get('/test', (req, res) => {
+  return 'Testing';
+});
+
 app.get('/weather', async (req, res) => {
   const { city } = req.query;
 
